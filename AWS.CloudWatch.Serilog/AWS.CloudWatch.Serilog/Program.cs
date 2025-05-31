@@ -1,24 +1,33 @@
+using Amazon.CloudWatchLogs;
 using Serilog;
+using Serilog.Sinks.AwsCloudWatch;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//Config Seril
-builder.Host.UseSerilog((_, loggerConfig) =>
+var options = new CloudWatchSinkOptions
 {
-    loggerConfig.WriteTo.Console().ReadFrom.Configuration(builder.Configuration);
+    LogGroupName = "/log/demo",
+    TextFormatter = new Serilog.Formatting.Json.JsonFormatter(),
+    MinimumLogEventLevel = Serilog.Events.LogEventLevel.Debug,
+    CreateLogGroup = true,
+    LogStreamNameProvider = new DefaultLogStreamProvider()
+};
+
+var client = new AmazonCloudWatchLogsClient(Amazon.RegionEndpoint.USEast1);
+
+builder.Host.UseSerilog((ctx, cfg) =>
+{
+    cfg
+        .WriteTo.Console()
+        .WriteTo.AmazonCloudWatch(options, client);
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -26,9 +35,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
