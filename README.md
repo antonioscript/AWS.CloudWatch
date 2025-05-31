@@ -27,4 +27,7 @@ A time-ordered se of data points published to CloudWatch
 
 
 # References
+https://codewithmukesh.com/blog/amazon-cloudwatch-logging-serilog-dotnet/
+
+
 https://www.youtube.com/watch?v=Yxl7e88cTAQ
