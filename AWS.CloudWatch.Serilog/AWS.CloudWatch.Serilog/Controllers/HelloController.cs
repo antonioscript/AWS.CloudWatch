@@ -16,6 +16,7 @@ public class HelloController : ControllerBase
         _logger.LogDebug("Received Request with id as {id}", id);
         _logger.LogInformation("Processing your request");
         _logger.LogError("Some Errors occcured.");
+
         return Ok("Logged");
     }
 }
