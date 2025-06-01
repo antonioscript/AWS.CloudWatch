@@ -34,17 +34,19 @@ After you have created the application, go to the AWS console and create the set
 
 ## CloudWacth Logs
 
-## Create Logs Group
-
-![image](https://github.com/user-attachments/assets/f4ae0ea6-2398-4ec4-a365-c958f7e93bba)
-
------
+_> After configuring the application and running the controller, a log group is created with the name that was defined in appSettings_
 
 
-![image](https://github.com/user-attachments/assets/d24d9882-7494-420d-91a0-19236553ec63)
+![image](https://github.com/user-attachments/assets/74f1759f-e501-4f69-9f56-5ca35209c9f8)
+
 
 ----
 
+![image](https://github.com/user-attachments/assets/a99300ba-4597-4adf-b1c8-5b4a2ae88b53)
+
+----
+
+![image](https://github.com/user-attachments/assets/47e85a27-4711-4526-8d50-929044028188)
 
 
 
